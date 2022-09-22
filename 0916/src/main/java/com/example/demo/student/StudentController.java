@@ -3,6 +3,7 @@ package com.example.demo.student;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path="api/v1/student")
+@CrossOrigin(origins="http://localhost:3000/")
 public class StudentController {
 	
 	private final StudentService studentService;
@@ -24,8 +26,6 @@ public class StudentController {
 	public StudentController(StudentService studentService) {
 		this.studentService = studentService;
 	}
-
-
 
 	@GetMapping //서버에서 무언가 얻으려고 할 때
 	public List<Student> getStudents(){
@@ -49,5 +49,4 @@ public class StudentController {
 			@RequestParam(required = false) String email) {
 		studentService.updateStudent(studentId, name, email);
 	}
-	
 }
